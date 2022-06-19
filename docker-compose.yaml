@@ -26,7 +26,7 @@ services:
       - --storage.tsdb.path=/prometheus
       - --web.console.libraries=/usr/share/prometheus/console_libraries
       - --web.console.templates=/usr/share/prometheus/consoles
-      - --storage.tsdb.retention.time=30d
+      - --storage.tsdb.retention.time=${PROMETHEUS_STORAGE_TSDB_RETENTION_TIME:-30d}
     restart: always
     volumes:
       - ${PWD}/gpu-metrics-prometheus-config.yaml:/etc/prometheus/prometheus.yml:ro
