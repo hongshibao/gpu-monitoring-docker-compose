@@ -1,0 +1,54 @@
+services:
+  dcgm_exporter:
+    image: nvcr.io/nvidia/k8s/dcgm-exporter:2.4.5-2.6.7-ubuntu20.04
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [ gpu ]
+    restart: always
+    environment:
+      - DCGM_EXPORTER_NO_HOSTNAME=1
+    cap_add:
+      - SYS_ADMIN
+    ports:
+      - "9400:9400"
+    networks:
+      - gpu_metrics
+  prometheus:
+    image: prom/prometheus:v2.36.1
+    ports:
+      - "9090:9090"
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --web.console.libraries=/usr/share/prometheus/console_libraries
+      - --web.console.templates=/usr/share/prometheus/consoles
+      - --storage.tsdb.retention.time=30d
+    restart: always
+    volumes:
+      - ${PWD}/gpu-metrics-prometheus-config.yaml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    networks:
+      - gpu_metrics
+  grafana:
+    image: grafana/grafana:8.5.6
+    ports:
+      - "3000:3000"
+    restart: always
+    volumes:
+      - grafana_data:/var/lib/grafana
+    networks:
+      - gpu_metrics
+
+volumes:
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local
+
+networks:
+  gpu_metrics:
+    driver: bridge
