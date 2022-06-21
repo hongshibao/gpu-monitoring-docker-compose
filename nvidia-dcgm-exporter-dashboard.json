@@ -1198,7 +1198,7 @@
             "type": "prometheus",
             "uid": "${DS_PROMETHEUS}"
           },
-          "expr": "(DCGM_FI_DEV_FB_USED/(DCGM_FI_DEV_FB_FREE+DCGM_FI_DEV_FB_USED) > bool 0.3) * (DCGM_FI_DEV_GPU_UTIL < bool 0.5)",
+          "expr": "(DCGM_FI_DEV_FB_USED/(DCGM_FI_DEV_FB_FREE+DCGM_FI_DEV_FB_USED) > bool 0.3) * (DCGM_FI_DEV_GPU_UTIL < bool 50)",
           "refId": "A"
         }
       ],
