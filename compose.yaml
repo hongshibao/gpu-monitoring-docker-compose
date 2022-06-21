@@ -29,7 +29,7 @@ services:
       - --storage.tsdb.retention.time=${PROMETHEUS_STORAGE_TSDB_RETENTION_TIME:-30d}
     restart: always
     volumes:
-      - ${PWD}/gpu-metrics-prometheus-config.yaml:/etc/prometheus/prometheus.yml:ro
+      - ./gpu-metrics-prometheus-config.yaml:/etc/prometheus/prometheus.yml:ro
       - prometheus_data:/prometheus
     networks:
       - gpu_metrics
@@ -40,6 +40,8 @@ services:
     restart: always
     volumes:
       - grafana_data:/var/lib/grafana
+      - ./grafana_provisioning:/etc/grafana/provisioning:ro
+      - ./grafana_dashboards:/etc/dashboards:ro
     networks:
       - gpu_metrics
 
