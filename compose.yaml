@@ -38,6 +38,9 @@ services:
     ports:
       - "${GRAFANA_HOST_PORT:-3000}:3000"
     restart: always
+    environment:
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER:-admin}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin}
     volumes:
       - grafana_data:/var/lib/grafana
       - ./grafana_provisioning:/etc/grafana/provisioning:ro

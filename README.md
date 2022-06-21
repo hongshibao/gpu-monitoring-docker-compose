@@ -2,10 +2,14 @@
 
 [Docker Compose](https://docs.docker.com/compose/) file to set up NVIDIA GPU monitoring on a single server using [DCGM-Exporter](https://github.com/NVIDIA/dcgm-exporter), [Prometheus](https://github.com/prometheus/prometheus), and [Grafana](https://github.com/grafana/grafana).
 
+## Prerequisites
+
+1. [NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html)
+2. [Docker Compose](https://docs.docker.com/compose/install/). Please make sure your docker-compose supports Compose file format [version 3.x](https://docs.docker.com/compose/compose-file/compose-versioning/).
 
 ## Set Up
 
-Please make sure your docker-compose supports Compose file format [version 3.x](https://docs.docker.com/compose/compose-file/compose-versioning/), and then run the following command to launch containers:
+Run the following command to launch containers:
 
 ```bash
 docker-compose up -d
@@ -35,4 +39,6 @@ The Compose file contains several environment variables to allow users to popula
 | DCGM_EXPORTER_HOST_PORT                | Host port for dcgm-exporter container              | 9400                    |
 | PROMETHEUS_HOST_PORT                   | Host port for prometheus container                 | 9090                    |
 | GRAFANA_HOST_PORT                      | Host port for grafana container                    | 3000                    |
+| GRAFANA_ADMIN_USER                     | Admin username of grafana                          | admin                   |
+| GRAFANA_ADMIN_PASSWORD                 | Admin password of grafana                          | admin                   |
 | PROMETHEUS_STORAGE_TSDB_RETENTION_TIME | `storage.tsdb.retention.time` config of prometheus | 30d                     |
