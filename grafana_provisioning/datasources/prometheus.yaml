@@ -11,4 +11,4 @@ datasources:
     # <string, required> access mode. proxy or direct (Server or Browser in the UI). Required
     access: proxy
     # <bool> allow users to edit datasources from the UI.
-    editable: true
+    editable: false
