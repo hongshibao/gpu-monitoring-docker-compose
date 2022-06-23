@@ -17,6 +17,8 @@ docker-compose up -d
 
 Then you can access http://localhost:3000 for Grafana Dashboard (default username: _admin_, password: _admin_).
 
+![dashboard-snapshot](./dashboard-snapshot.png)
+
 ## Tear Down
 
 Run the following command to stop and remove containers:
