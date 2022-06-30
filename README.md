@@ -13,7 +13,7 @@ Run the following command to launch containers:
 
 ```bash
 docker-compose up -d
-# or `docker compose up -d` if you install docker-compose as a Docker CLI plugin
+# or `docker compose up -d` if docker-compose is installed as a Docker CLI plugin
 ```
 
 Then you can access http://localhost:3000 for Grafana Dashboard (default username: _admin_, password: _admin_).
@@ -26,7 +26,7 @@ Run the following command to stop and remove containers:
 
 ```bash
 docker-compose down
-# or `docker compose down` if you install docker-compose as a Docker CLI plugin
+# or `docker compose down` if docker-compose is installed as a Docker CLI plugin
 ```
 
 This command will not delete [docker volumes](https://docs.docker.com/storage/volumes/), so the data is still persisted on the server unless you manually delete the volumes.
