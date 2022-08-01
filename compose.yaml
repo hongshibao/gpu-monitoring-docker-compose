@@ -1,6 +1,6 @@
 services:
   dcgm_exporter:
-    image: nvcr.io/nvidia/k8s/dcgm-exporter:${DCGM_EXPORTER_IMAGE_TAG:-2.4.5-2.6.7-ubuntu20.04}
+    image: nvcr.io/nvidia/k8s/dcgm-exporter:${DCGM_EXPORTER_IMAGE_TAG}
     deploy:
       resources:
         reservations:
@@ -14,19 +14,19 @@ services:
     cap_add:
       - SYS_ADMIN
     ports:
-      - "${DCGM_EXPORTER_HOST_PORT:-9400}:9400"
+      - "${DCGM_EXPORTER_HOST_PORT}:9400"
     networks:
       - gpu_metrics
   prometheus:
-    image: prom/prometheus:${PROMETHEUS_IMAGE_TAG:-v2.36.1}
+    image: prom/prometheus:${PROMETHEUS_IMAGE_TAG}
     ports:
-      - "${PROMETHEUS_HOST_PORT:-9090}:9090"
+      - "${PROMETHEUS_HOST_PORT}:9090"
     command:
       - --config.file=/etc/prometheus/prometheus.yml
       - --storage.tsdb.path=/prometheus
       - --web.console.libraries=/usr/share/prometheus/console_libraries
       - --web.console.templates=/usr/share/prometheus/consoles
-      - --storage.tsdb.retention.time=${PROMETHEUS_STORAGE_TSDB_RETENTION_TIME:-30d}
+      - --storage.tsdb.retention.time=${PROMETHEUS_STORAGE_TSDB_RETENTION_TIME}
     restart: always
     volumes:
       - ./gpu-metrics-prometheus-config.yaml:/etc/prometheus/prometheus.yml:ro
@@ -34,13 +34,13 @@ services:
     networks:
       - gpu_metrics
   grafana:
-    image: grafana/grafana:${GRAFANA_IMAGE_TAG:-8.5.6}
+    image: grafana/grafana:${GRAFANA_IMAGE_TAG}
     ports:
-      - "${GRAFANA_HOST_PORT:-3000}:3000"
+      - "${GRAFANA_HOST_PORT}:3000"
     restart: always
     environment:
-      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER:-admin}
-      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD:-admin}
+      - GF_SECURITY_ADMIN_USER=${GRAFANA_ADMIN_USER}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASSWORD}
     volumes:
       - grafana_data:/var/lib/grafana
       - ./grafana_provisioning:/etc/grafana/provisioning:ro

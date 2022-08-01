@@ -46,3 +46,7 @@ The Compose file contains several environment variables to allow users to popula
 | GRAFANA_ADMIN_USER                     | Admin username of grafana                          | admin                   |
 | GRAFANA_ADMIN_PASSWORD                 | Admin password of grafana                          | admin                   |
 | PROMETHEUS_STORAGE_TSDB_RETENTION_TIME | `storage.tsdb.retention.time` config of prometheus | 30d                     |
+
+The default values of these environment variables are put inside the `.env` file. You can modify the `.env` file to change these configurations. Alternatively, you can specify your own Environment file by providing `--env-file` option when running `docker-compose` command.
+
+Shell environment variables, which has a higher priority than Environment file,  can also be set to override these values, e.g. `GRAFANA_HOST_PORT=13000 docker-compose up -d`.
