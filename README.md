@@ -35,17 +35,17 @@ This command will not delete [docker volumes](https://docs.docker.com/storage/vo
 
 The Compose file contains several environment variables to allow users to populate values inside the Compose file:
 
-| Environment Variable                   | Explanation                                        | Default Value           |
-| -------------------------------------- | -------------------------------------------------- | ----------------------- |
-| DCGM_EXPORTER_IMAGE_TAG                | Docker tag for dcgm-exporter image                 | 2.4.5-2.6.7-ubuntu20.04 |
-| PROMETHEUS_IMAGE_TAG                   | Docker tag for prometheus image                    | v2.36.1                 |
-| GRAFANA_IMAGE_TAG                      | Docker tag for grafana image                       | 8.5.6                   |
-| DCGM_EXPORTER_HOST_PORT                | Host port for dcgm-exporter container              | 9400                    |
-| PROMETHEUS_HOST_PORT                   | Host port for prometheus container                 | 9090                    |
-| GRAFANA_HOST_PORT                      | Host port for grafana container                    | 3000                    |
-| GRAFANA_ADMIN_USER                     | Admin username of grafana                          | admin                   |
-| GRAFANA_ADMIN_PASSWORD                 | Admin password of grafana                          | admin                   |
-| PROMETHEUS_STORAGE_TSDB_RETENTION_TIME | `storage.tsdb.retention.time` config of prometheus | 30d                     |
+| Environment Variable                   | Explanation                                        | Default Value            |
+| -------------------------------------- | -------------------------------------------------- | ------------------------ |
+| DCGM_EXPORTER_IMAGE_TAG                | Docker tag for dcgm-exporter image                 | 2.4.6-2.6.10-ubuntu20.04 |
+| PROMETHEUS_IMAGE_TAG                   | Docker tag for prometheus image                    | v2.36.1                  |
+| GRAFANA_IMAGE_TAG                      | Docker tag for grafana image                       | 8.5.6                    |
+| DCGM_EXPORTER_HOST_PORT                | Host port for dcgm-exporter container              | 9400                     |
+| PROMETHEUS_HOST_PORT                   | Host port for prometheus container                 | 9090                     |
+| GRAFANA_HOST_PORT                      | Host port for grafana container                    | 3000                     |
+| GRAFANA_ADMIN_USER                     | Admin username of grafana                          | admin                    |
+| GRAFANA_ADMIN_PASSWORD                 | Admin password of grafana                          | admin                    |
+| PROMETHEUS_STORAGE_TSDB_RETENTION_TIME | `storage.tsdb.retention.time` config of prometheus | 30d                      |
 
 The default values of these environment variables are put inside the `.env` file. You can modify the `.env` file to change these configurations. Alternatively, you can specify your own Environment file by providing `--env-file` option when running `docker-compose` command.
 
